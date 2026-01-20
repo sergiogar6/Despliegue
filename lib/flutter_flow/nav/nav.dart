@@ -50,6 +50,61 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: ListarAlumnosWidget.routeName,
           path: ListarAlumnosWidget.routePath,
           builder: (context, params) => ListarAlumnosWidget(),
+        ),
+        FFRoute(
+          name: CrearAlumnoWidget.routeName,
+          path: CrearAlumnoWidget.routePath,
+          builder: (context, params) => CrearAlumnoWidget(
+            alumno: params.getParam(
+              'alumno',
+              ParamType.JSON,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: ListarAsignaturasWidget.routeName,
+          path: ListarAsignaturasWidget.routePath,
+          builder: (context, params) => ListarAsignaturasWidget(),
+        ),
+        FFRoute(
+          name: CrearAsignaturaWidget.routeName,
+          path: CrearAsignaturaWidget.routePath,
+          builder: (context, params) => CrearAsignaturaWidget(
+            asignatura: params.getParam(
+              'asignatura',
+              ParamType.JSON,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: AsignaturasAlumnoWidget.routeName,
+          path: AsignaturasAlumnoWidget.routePath,
+          builder: (context, params) => AsignaturasAlumnoWidget(
+            alumno: params.getParam(
+              'alumno',
+              ParamType.JSON,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: AlumnosAsignaturaWidget.routeName,
+          path: AlumnosAsignaturaWidget.routePath,
+          builder: (context, params) => AlumnosAsignaturaWidget(
+            asignatura: params.getParam(
+              'asignatura',
+              ParamType.JSON,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: MatricularAlumnoWidget.routeName,
+          path: MatricularAlumnoWidget.routePath,
+          builder: (context, params) => MatricularAlumnoWidget(
+            alumno: params.getParam(
+              'alumno',
+              ParamType.JSON,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
