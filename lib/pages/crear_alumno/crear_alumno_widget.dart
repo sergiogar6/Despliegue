@@ -345,7 +345,10 @@ class _CrearAlumnoWidgetState extends State<CrearAlumnoWidget> {
                         onPressed: () async {
                           if (widget.alumno != null) {
                             await actions.updateAlumno(
-                              1,
+                              getJsonField(
+                                widget.alumno,
+                                r'''$.id''',
+                              ),
                               _model.textController1.text,
                               _model.textController2.text,
                             );
