@@ -30,7 +30,7 @@ jobs:
 
       - name: Deploy APK to Despliegue_android repository
         run: |
-          git clone https://x-access-token:${{ secrets.ACCESS_TOKEN }}@github.com/sergiogar6/Despliegue_android.git android-repo
+          git clone https://x-access-token:${{ secrets.ACCESS_TOKEN }}@github.com/sergiogar6/Despliegue_movil.git android-repo
           rm -r android-repo/*
           cp build/app/outputs/flutter-apk/app-release.apk android-repo/
           cd android-repo
