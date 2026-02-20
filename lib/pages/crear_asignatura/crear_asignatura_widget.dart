@@ -249,7 +249,7 @@ class _CrearAsignaturaWidgetState extends State<CrearAsignaturaWidget> {
                         },
                         text: valueOrDefault<String>(
                           widget.asignatura != null ? 'Actualizar' : 'Crear',
-                          'boton',
+                          'botonn',
                         ),
                         options: FFButtonOptions(
                           height: 40.0,
