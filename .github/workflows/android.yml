@@ -1,41 +1,43 @@
-name: Dart Android Deploy
+name: Build Flutter Android APK and Deploy
 
 on:
   push:
-    branches: [ "flutterflow" ]
+    branches: ["flutterflow"]
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source repo
-        uses: actions/checkout@v4
+    - name: Checkout source repo
+      uses: actions/checkout@v4
 
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: stable
-          cache: true
-      
-      - name: Install dependencies
-        run: flutter pub get
-        
-      - name: Build Flutter Android APK
-        run: flutter build apk --release
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
 
-      # Opcional: si quieres construir AAB en lugar de APK
-      # - name: Build Flutter Android App Bundle
-      #   run: flutter build appbundle --release
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        channel: stable
+        cache: true
 
-      - name: Deploy APK to Despliegue_android repository
-        run: |
-          git clone https://x-access-token:${{ secrets.ACCESS_TOKEN }}@github.com/sergiogar6/Despliegue_movil.git android-repo
-          rm -r android-repo/*
-          cp build/app/outputs/flutter-apk/app-release.apk android-repo/
-          cd android-repo
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "Deploy Flutter Android APK"
-          git push
+    - name: Install dependencies
+      run: flutter pub get
+
+    - name: Build Android APK (release)
+      run: flutter build apk --release
+
+    - name: Deploy APK to Android repository
+      run: |
+        git clone https://x-access-token:${{ secrets.ACCESS_TOKEN }}@github.com/sergiogar6/DespliegueMovil.git android-repo
+        rm -rf android-repo/*
+        cp build/app/outputs/flutter-apk/app-release.apk android-repo/
+        cd android-repo
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git add .
+        git commit -m "Deploy Android APK"
+        git push
