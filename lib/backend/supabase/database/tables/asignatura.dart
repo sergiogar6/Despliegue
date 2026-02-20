@@ -17,6 +17,6 @@ class AsignaturaRow extends SupabaseDataRow {
   int get id => getField<int>('id')!;
   set id(int value) => setField<int>('id', value);
 
-  String get nombre => getField<String>('nombre')!;
-  set nombre(String value) => setField<String>('nombre', value);
+  String? get nombre => getField<String>('nombre');
+  set nombre(String? value) => setField<String>('nombre', value);
 }
